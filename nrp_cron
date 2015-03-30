@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+*/10 * * * * root /usr/bin/nice -n 5 /usr/bin/php5 -q /etc/nginx/scripts/init.php
