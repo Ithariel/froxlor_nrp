@@ -7,4 +7,5 @@ To use, you must move the scripts folder into your nginx directory and configure
 After this copy to nrp_cron into your cron.d directory. Finally you have to change the default ports from apache:
 
 http: 8888
+
 https: 8843
