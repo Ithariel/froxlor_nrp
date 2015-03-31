@@ -118,10 +118,6 @@ function getvhost($domain) {
 	root ".$domain['documentroot'].";
 	index index.php index.html index.htm;
 
-        location /rainloop {
-                rewrite ^(.*) http://\$server_name:8888\$1 permanent;
-        }
-
 	location ~ /\.ht {
 		deny all;
 	}
@@ -161,11 +157,6 @@ function getvhost($domain) {
 }
 
 
-server {
-	listen 80;
-
-	server_name *.".$domain['domain']." ;
-	return 404;
 }
 
 ";
@@ -216,10 +207,6 @@ function getSSLvhost($domain) {
 
 	root ".$domain['documentroot'].";
 	index index.php index.html index.htm;
-
-        location /rainloop {
-                rewrite ^(.*) https://\$server_name:8843\$1 permanent;
-        }
 
 	location ~ /\.ht {
 		deny all;
@@ -301,7 +288,7 @@ function create_vhosts($_domaininfo) {
 			$vhost = getvhost($domain);
 
 			if(!empty($domain['domain']))
-				file_put_contents(NGINX_VHOST_PATH.'/'.$file_prefix.'_normal_vhost'.$domain['domain'].'.conf', $vhost, LOCK_EX);
+				file_put_contents(NGINX_VHOST_PATH.'/'.$file_prefix.'_normal_vhost_'.$domain['domain'].'.conf', $vhost, LOCK_EX);
 		}
 
                 if($domain['port'] == 8843) {
@@ -311,7 +298,7 @@ function create_vhosts($_domaininfo) {
 			$vhost = getSSLvhost($domain);
 
 	                if(!empty($domain['domain']))
-        	                file_put_contents(NGINX_VHOST_PATH.'/'.$file_prefix.'_ssl_vhost'.$domain['domain'].'.conf', $vhost, LOCK_EX);
+        	                file_put_contents(NGINX_VHOST_PATH.'/'.$file_prefix.'_ssl_vhost_'.$domain['domain'].'.conf', $vhost, LOCK_EX);
                 }
 
 	}

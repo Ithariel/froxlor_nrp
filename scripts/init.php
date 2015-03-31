@@ -11,7 +11,7 @@ require_once(FROXLOR_HOME.'/lib/userdata.inc.php');
 // Set vars
 
 $froxlor_db = $sql['db'];
-$froxlor_host = $sql['socket'];
+$froxlor_host = $sql['host'];
 $froxlor_user = $sql['user'];
 $froxlor_pass = $sql['password'];
 

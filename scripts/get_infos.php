@@ -3,7 +3,7 @@
 //global $froxlor_db, $froxlor_host, $froxlor_user, $froxlor_pass;
 
 // DB PDO Object
-$db = new PDO('mysql:unix_socket='.$froxlor_host.';dbname='.$froxlor_db.';charset=utf8', $froxlor_user, $froxlor_pass);
+$db = new PDO('mysql:host='.$froxlor_host.';dbname='.$froxlor_db.';charset=utf8', $froxlor_user, $froxlor_pass);
 
 
 function getDomainInfo() {
