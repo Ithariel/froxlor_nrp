@@ -21,14 +21,18 @@ function getDomainInfo() {
 
 	foreach($domains as $domain) {
 		// Get ip_id
-		$ipid_stmt = $db->query('SELECT id_ipandports FROM panel_domaintoip WHERE id_domain='.$domain['id']);
+		$ipid_stmt = $db->prepare('SELECT id_ipandports FROM panel_domaintoip WHERE id_domain=:id');
+                $ipid_stmt->bindParam(':id', $domain['id'], PDO::PARAM_INT);
+                $ipid_stmt->execute();
 		$_ipid = $ipid_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 		foreach($_ipid as $ipid) {
 
 			// Get ip from ip_id
-			$ip_stmt = $db->query('SELECT ip, port FROM panel_ipsandports WHERE id='.$ipid['id_ipandports']);
+			$ip_stmt = $db->prepare('SELECT ip, port FROM panel_ipsandports WHERE id=:ipid');
+                        $ip_stmt->bindParam(':ipid', $ipid['id_ipandports'], PDO::PARAM_INT);
+                        $ip_stmt->execute();
 			$_ip = $ip_stmt->fetch(PDO::FETCH_ASSOC);
 
 			// Push ip and port into array
