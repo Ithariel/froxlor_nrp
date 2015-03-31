@@ -77,8 +77,13 @@ function mergeSSL($domain) {
 		}
 	}
 
+	if(empty($cert_bundle))
+		return "No SSL";
+
 	// Write Bundle
 	file_put_contents('/etc/ssl/nginx/'.$domainname.'.bundle', $cert_bundle, LOCK_EX);
+
+	return "OK";
 }
 
 function getvhost($domain) {
@@ -293,7 +298,8 @@ function create_vhosts($_domaininfo) {
 
                 if($domain['port'] == 8843) {
 
-			mergeSSL($domain);
+			if(mergeSSL($domain) != "OK")
+				continue;
 
 			$vhost = getSSLvhost($domain);
 
