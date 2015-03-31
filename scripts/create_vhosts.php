@@ -177,7 +177,7 @@ function getSSLvhost($domain) {
         if (preg_match('/^https?\:\/\//', $domain['documentroot'])) {
 
 		$vhost = "server {
-	listen 443 ssl spdy;
+	listen 443 ssl;
 	server_name ".$domain['domain'].getSubAlias($domain).getAlias($domain).";
 	ssl on;
 	ssl_certificate /etc/ssl/nginx/".$domain['domain'].'.bundle'.";
@@ -197,7 +197,7 @@ function getSSLvhost($domain) {
         } else {
 
 		$vhost = "server {
-	listen 443 ssl spdy;
+	listen 443 ssl;
 	server_name ".$domain['domain'].getSubAlias($domain).getAlias($domain).";
 	ssl on;
 	ssl_certificate /etc/ssl/nginx/".$domain['domain'].'.bundle'.";
