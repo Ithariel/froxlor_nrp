@@ -152,20 +152,8 @@ function getvhost($domain) {
 	location ~ \.(php|php5|cgi|pl|htm?l)$ {
 		proxy_pass http://\$server_addr:8888\$request_uri;		
 		include /etc/nginx/proxy.conf;
-		";
-
-
-		
-
-		$vhost .="
-		}
-}
-
-
-}
-
-";
-
+        }";
+                
 	}
 
 	return $vhost;
@@ -242,18 +230,9 @@ function getSSLvhost($domain) {
 	location ~ \.(php|php5|cgi|pl|htm?l)$ {
 		proxy_pass https://\$server_addr:8843\$request_uri;
 		include /etc/nginx/proxy.conf;
-		";
+		}";
 
-
-		
-		
-
-		$vhost .="
-	}
-
-}";
-
-	}
+	};
 
 	return $vhost;
 }
