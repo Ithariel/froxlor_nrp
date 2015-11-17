@@ -47,7 +47,7 @@ function mergeSSL($domain) {
 		$cert_bundle .= $custom_ssl['ssl_ca_file']."\n";
 
 	if(!empty($custom_ssl['ssl_cert_chainfile']))
-		$cert_bundle .= $custom_ssl['ssl_cert_chainfile'];
+		$cert_bundle .= $custom_ssl['ssl_cert_chainfile']."\n";
 
 	if(!empty($cert_bundle)) {
 		$ssl_key = $custom_ssl['ssl_key_file'];
@@ -62,13 +62,13 @@ function mergeSSL($domain) {
 
 		// get cert, ca and chain
 		if(file_exists($ip_ssl['ssl_cert_file']))
-			$cert_bundle = file_get_contents($ip_ssl['ssl_cert_file']);
+			$cert_bundle = file_get_contents($ip_ssl['ssl_cert_file'])."\n";
 
 		if(file_exists($ip_ssl['ssl_ca_file']))
-			$cert_bundle .= file_get_contents($ip_ssl['ssl_ca_file']);
+			$cert_bundle .= file_get_contents($ip_ssl['ssl_ca_file'])."\n";
 
 		if(file_exists($ip_ssl['ssl_cert_chainfile']))
-			$cert_bundle .= file_get_contents($ip_ssl['ssl_cert_chainfile']);
+			$cert_bundle .= file_get_contents($ip_ssl['ssl_cert_chainfile'])."\n";
 
 		// Copy Key
 		if(file_exists($ip_ssl['ssl_key_file'])) {
